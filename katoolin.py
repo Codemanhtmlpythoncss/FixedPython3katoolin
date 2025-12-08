@@ -75,10 +75,9 @@ def main():
                         "\033[1;32mWhat do you want to do ?> \033[1;m")
                     if repo == "1":
                         cmd1 = os.system(
-                            "wget -q -O - archive.kali.org/archive-key.asc | sudo  apt-key add")
+                            "curl -fsSL https://archive.kali.org/archive-key.asc | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/kali-archive-keyring.gpg > /dev/null")
                         cmd2 = os.system(
-                            "echo '# Kali linux repositories | Added by Katoolin\ndeb http://http.kali.org/kali "
-                            "kali-rolling main contrib non-free' >> /etc/apt/sources.list")
+                            "echo 'deb http://http.kali.org/kali kali-rolling main contrib non-free' | sudo tee -a /etc/apt/sources.list.d/kali.list")
                     elif repo == "2":
                         cmd3 = os.system("apt-get update -m")
                     elif repo == "3":
