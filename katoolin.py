@@ -575,7 +575,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                     else:
                         print("\033[1;31mSorry, that was an invalid command!\033[1;m")
 
-                        while opcion1 == "3":
+                        if opcion1 == "3":
                             print('''
 		\033[1;36m=+[ Wireless Attacks\033[1;m
 
@@ -682,7 +682,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "4":
+                        if opcion1 == "4":
                             print('''
 \033[1;36m=+[ Web Applications\033[1;m
 
@@ -814,7 +814,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "5":
+                        if opcion1 == "5":
                             print('''
 \033[1;36m=+[ Sniffing & Spoofing\033[1;m
 
@@ -922,7 +922,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
 
-                        while opcion1 == "6":
+                        if opcion1 == "6":
                             print('''
 \033[1;36m=+[ Maintaining Access\033[1;m
 
@@ -993,7 +993,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "7":
+                        if opcion1 == "7":
                             print('''
 \033[1;36m=+[ Reporting Tools\033[1;m
 
@@ -1044,7 +1044,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
 
-                        while opcion1 == "8":
+                        if opcion1 == "8":
                             print('''
 \033[1;36m=+[ Exploitation Tools\033[1;m
 
@@ -1126,7 +1126,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
 
-                        while opcion1 == "9":
+                        if opcion1 == "9":
                             print('''
 \033[1;36m=+[ Forensics Tools\033[1;m
 
@@ -1212,7 +1212,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "10":
+                        if opcion1 == "10":
                             print('''
 \033[1;36m=+[ Stress Testing\033[1;m
 
@@ -1278,7 +1278,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "11":
+                        if opcion1 == "11":
                             print('''
 \033[1;36m=+[ Password Attacks\033[1;m
 
@@ -1401,7 +1401,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "12":
+                        if opcion1 == "12":
                             print('''
 \033[1;36m=+[ Reverse Engineering\033[1;m
 
@@ -1458,7 +1458,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "13":
+                        if opcion1 == "13":
                             print('''
 \033[1;36m=+[ Hardware Hacking\033[1;m
 
@@ -1500,7 +1500,7 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
-                        while opcion1 == "14":
+                        if opcion1 == "14":
                             print('\n'
                                   '\033[1;36m=+[ Extra\033[1;m\n'
                                   '\n'
@@ -1541,4 +1541,4 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
 
 if __name__ == "__main__":
     main()
-#jd
+#while 
