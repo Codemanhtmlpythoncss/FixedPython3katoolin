@@ -1,27 +1,61 @@
-FAILED_TOOLS = []
-
-def safe_install(tool_cmd, tool_name=None):
-    """Try to install a tool using apt-get, catch failures, and log them."""
-    if tool_name is None:
-        # Try to get tool name from command
-        tool_name = tool_cmd.split()[-1]
-    try:
-        print(f"\033[1;34m[*] Installing {tool_name}...\033[1;m")
-        exit_code = os.system(tool_cmd)
-        if exit_code != 0:
-            print(f"\033[1;31m[!] Failed to install {tool_name} (exit code {exit_code})\033[1;m")
-            FAILED_TOOLS.append(tool_name)
-        else:
-            print(f"\033[1;32m[+] {tool_name} installed successfully.\033[1;m")
-    except Exception as e:
-        print(f"\033[1;31m[!] Exception while installing {tool_name}: {e}\033[1;m")
-        FAILED_TOOLS.append(tool_name)
 #!/usr/bin/python3
 
 import os
 import sys
 import traceback
 
+FAILED_TOOLS = []
+
+def safe_install(tool_cmd, tool_name=None):
+    """Try to install a tool using apt-get, catch failures, and log them."""
+    # Ensure kali-defaults is only installed during tool installs and never overwrites system files
+    try:
+        os.system("apt-get install -y --no-install-recommends kali-defaults >/dev/null 2>&1")
+    except Exception:
+        pass
+
+    if tool_name is None:
+        tool_name = tool_cmd.split()[-1]
+
+    print(f"\033[1;34m[*] Installing {tool_name}...\033[1;m")
+
+    # Force noninteractive installs + safe dependency fixing
+    full_cmd = f"DEBIAN_FRONTEND=noninteractive sudo {tool_cmd} --no-install-recommends"
+
+    exit_code = os.system(full_cmd)
+
+    if exit_code != 0:
+        print(f"\033[1;31m[!] Failed to install {tool_name} (exit code {exit_code})\033[1;m")
+        print("\033[1;34m[*] Attempting dependency auto-fix...\033[1;m")
+
+        # Automatically attempt dependency repair
+        fix_code = os.system("sudo apt-get -f install -y --no-install-recommends")
+
+        if fix_code == 0:
+            print(f"\033[1;33m[+] Dependency fix applied. Re-attempting install of {tool_name}...\033[1;m")
+            retry_code = os.system(full_cmd)
+            if retry_code != 0:
+                print(f"\033[1;31m[!] {tool_name} still failed after dependency fix.\033[1;m")
+                FAILED_TOOLS.append(tool_name)
+                return
+            else:
+                print(f"\033[1;32m[+] {tool_name} installed successfully after dependency fix.\033[1;m")
+                return
+        else:
+            print(f"\033[1;31m[!] Dependency fix failed. Marking {tool_name} as failed.\033[1;m")
+            FAILED_TOOLS.append(tool_name)
+    else:
+        print(f"\033[1;32m[+] {tool_name} installed successfully.\033[1;m")
+
+def install_kali_defaults():
+    """Safely install kali-defaults without diverting system files."""
+    print("\033[1;34m[*] Installing kali-defaults safely...\033[1;m")
+    exit_code = os.system("apt-get install -y kali-defaults")
+    if exit_code != 0:
+        print(f"\033[1;31m[!] Failed to install kali-defaults (exit code {exit_code})\033[1;m")
+        FAILED_TOOLS.append("kali-defaults")
+    else:
+        print("\033[1;32m[+] kali-defaults installed successfully.\033[1;m")
 
 def setup():
     if os.geteuid() != 0:
