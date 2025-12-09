@@ -1,3 +1,21 @@
+FAILED_TOOLS = []
+
+def safe_install(tool_cmd, tool_name=None):
+    """Try to install a tool using apt-get, catch failures, and log them."""
+    if tool_name is None:
+        # Try to get tool name from command
+        tool_name = tool_cmd.split()[-1]
+    try:
+        print(f"\033[1;34m[*] Installing {tool_name}...\033[1;m")
+        exit_code = os.system(tool_cmd)
+        if exit_code != 0:
+            print(f"\033[1;31m[!] Failed to install {tool_name} (exit code {exit_code})\033[1;m")
+            FAILED_TOOLS.append(tool_name)
+        else:
+            print(f"\033[1;32m[+] {tool_name} installed successfully.\033[1;m")
+    except Exception as e:
+        print(f"\033[1;31m[!] Exception while installing {tool_name}: {e}\033[1;m")
+        FAILED_TOOLS.append(tool_name)
 #!/usr/bin/python3
 
 import os
@@ -218,127 +236,130 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                                 "\033[1;32mInsert the number of the tool to install it .\n\033[1;m")
                             option2 = input("\033[1;36mkat > \033[1;m")
                             if option2 == "1":
-                                cmd = os.system("apt-get install acccheck")
-
+                                safe_install("apt-get install -y acccheck", "acccheck")
                             elif option2 == "2":
-                                cmd = os.system("apt-get install ace-voip")
-
+                                safe_install("apt-get install -y ace-voip", "ace-voip")
                             elif option2 == "3":
-                                cmd = os.system("apt-get install amap")
+                                safe_install("apt-get install -y amap", "amap")
                             elif option2 == "4":
-                                cmd = os.system("apt-get install automater")
+                                safe_install("apt-get install -y automater", "automater")
                             elif option2 == "5":
-                                cmd = os.system(
-                                    "wget http://www.morningstarsecurity.com/downloads/bing-ip2hosts-0.4.tar.gz && tar -xzvf bing-ip2hosts-0.4.tar.gz && cp bing-ip2hosts-0.4/bing-ip2hosts /usr/local/bin/")
+                                try:
+                                    print("\033[1;34m[*] Installing bing-ip2hosts...\033[1;m")
+                                    exit_code = os.system(
+                                        "wget http://www.morningstarsecurity.com/downloads/bing-ip2hosts-0.4.tar.gz && tar -xzvf bing-ip2hosts-0.4.tar.gz && cp bing-ip2hosts-0.4/bing-ip2hosts /usr/local/bin/")
+                                    if exit_code != 0:
+                                        print("\033[1;31m[!] Failed to install bing-ip2hosts\033[1;m")
+                                        FAILED_TOOLS.append("bing-ip2hosts")
+                                    else:
+                                        print("\033[1;32m[+] bing-ip2hosts installed successfully.\033[1;m")
+                                except Exception as e:
+                                    print(f"\033[1;31m[!] Exception while installing bing-ip2hosts: {e}\033[1;m")
+                                    FAILED_TOOLS.append("bing-ip2hosts")
                             elif option2 == "6":
-                                cmd = os.system("apt-get install braa")
+                                safe_install("apt-get install -y braa", "braa")
                             elif option2 == "7":
-                                cmd = os.system("apt-get install casefile")
+                                safe_install("apt-get install -y casefile", "casefile")
                             elif option2 == "8":
-                                cmd = os.system("apt-get install cdpsnarf")
+                                safe_install("apt-get install -y cdpsnarf", "cdpsnarf")
                             elif option2 == "9":
-                                cmd = os.system("apt-get install cisco-torch")
+                                safe_install("apt-get install -y cisco-torch", "cisco-torch")
                             elif option2 == "10":
-                                cmd = os.system(
-                                    "apt-get install cookie-cadger")
+                                safe_install("apt-get install -y cookie-cadger", "cookie-cadger")
                             elif option2 == "11":
-                                cmd = os.system(
-                                    "apt-get install copy-router-config")
+                                safe_install("apt-get install -y copy-router-config", "copy-router-config")
                             elif option2 == "12":
-                                cmd = os.system("apt-get install dmitry")
+                                safe_install("apt-get install -y dmitry", "dmitry")
                             elif option2 == "13":
-                                cmd = os.system("apt-get install dnmap")
+                                safe_install("apt-get install -y dnmap", "dnmap")
                             elif option2 == "14":
-                                cmd = os.system("apt-get install dnsenum")
+                                safe_install("apt-get install -y dnsenum", "dnsenum")
                             elif option2 == "15":
-                                cmd = os.system("apt-get install dnsmap")
+                                safe_install("apt-get install -y dnsmap", "dnsmap")
                             elif option2 == "16":
-                                cmd = os.system("apt-get install dnsrecon")
+                                safe_install("apt-get install -y dnsrecon", "dnsrecon")
                             elif option2 == "17":
-                                cmd = os.system("apt-get install dnstracer")
+                                safe_install("apt-get install -y dnstracer", "dnstracer")
                             elif option2 == "18":
-                                cmd = os.system("apt-get install dnswalk")
+                                safe_install("apt-get install -y dnswalk", "dnswalk")
                             elif option2 == "19":
-                                cmd = os.system("apt-get install dotdotpwn")
+                                safe_install("apt-get install -y dotdotpwn", "dotdotpwn")
                             elif option2 == "20":
-                                cmd = os.system("apt-get install enum4linux")
+                                safe_install("apt-get install -y enum4linux", "enum4linux")
                             elif option2 == "21":
-                                cmd = os.system("apt-get install enumiax")
+                                safe_install("apt-get install -y enumiax", "enumiax")
                             elif option2 == "22":
-                                cmd = os.system("apt-get install exploitdb")
+                                safe_install("apt-get install -y exploitdb", "exploitdb")
                             elif option2 == "23":
-                                cmd = os.system("apt-get install fierce")
+                                safe_install("apt-get install -y fierce", "fierce")
                             elif option2 == "24":
-                                cmd = os.system("apt-get install firewalk")
+                                safe_install("apt-get install -y firewalk", "firewalk")
                             elif option2 == "25":
-                                cmd = os.system("apt-get install fragroute")
+                                safe_install("apt-get install -y fragroute", "fragroute")
                             elif option2 == "26":
-                                cmd = os.system("apt-get install fragrouter")
+                                safe_install("apt-get install -y fragrouter", "fragrouter")
                             elif option2 == "27":
-                                cmd = os.system(
-                                    "apt-get install ghost-phisher")
+                                safe_install("apt-get install -y ghost-phisher", "ghost-phisher")
                             elif option2 == "28":
-                                cmd = os.system("apt-get install golismero")
+                                safe_install("apt-get install -y golismero", "golismero")
                             elif option2 == "29":
-                                cmd = os.system("apt-get install goofile")
+                                safe_install("apt-get install -y goofile", "goofile")
                             elif option2 == "30":
-                                cmd = os.system("apt-get install lbd")
+                                safe_install("apt-get install -y lbd", "lbd")
                             elif option2 == "31":
-                                cmd = os.system(
-                                    "apt-get install maltego-teeth")
+                                safe_install("apt-get install -y maltego-teeth", "maltego-teeth")
                             elif option2 == "32":
-                                cmd = os.system("apt-get install masscan")
+                                safe_install("apt-get install -y masscan", "masscan")
                             elif option2 == "33":
-                                cmd = os.system("apt-get install metagoofil")
+                                safe_install("apt-get install -y metagoofil", "metagoofil")
                             elif option2 == "34":
-                                cmd = os.system("apt-get install miranda")
+                                safe_install("apt-get install -y miranda", "miranda")
                             elif option2 == "35":
-                                cmd = os.system("apt-get install nmap")
+                                safe_install("apt-get install -y nmap", "nmap")
                             elif option2 == "36":
                                 print('ntop is unavailable')
                             elif option2 == "37":
-                                cmd = os.system("apt-get install p0f")
+                                safe_install("apt-get install -y p0f", "p0f")
                             elif option2 == "38":
-                                cmd = os.system("apt-get install parsero")
+                                safe_install("apt-get install -y parsero", "parsero")
                             elif option2 == "39":
-                                cmd = os.system("apt-get install recon-ng")
+                                safe_install("apt-get install -y recon-ng", "recon-ng")
                             elif option2 == "40":
-                                cmd = os.system("apt-get install set")
+                                safe_install("apt-get install -y set", "set")
                             elif option2 == "41":
-                                cmd = os.system(
-                                    "apt-get install smtp-user-enum")
+                                safe_install("apt-get install -y smtp-user-enum", "smtp-user-enum")
                             elif option2 == "42":
-                                cmd = os.system("apt-get install snmpcheck")
+                                safe_install("apt-get install -y snmpcheck", "snmpcheck")
                             elif option2 == "43":
-                                cmd = os.system("apt-get install sslcaudit")
+                                safe_install("apt-get install -y sslcaudit", "sslcaudit")
                             elif option2 == "44":
-                                cmd = os.system("apt-get install sslsplit")
+                                safe_install("apt-get install -y sslsplit", "sslsplit")
                             elif option2 == "45":
-                                cmd = os.system("apt-get install sslstrip")
+                                safe_install("apt-get install -y sslstrip", "sslstrip")
                             elif option2 == "46":
-                                cmd = os.system("apt-get install sslyze")
+                                safe_install("apt-get install -y sslyze", "sslyze")
                             elif option2 == "47":
-                                cmd = os.system("apt-get install thc-ipv6")
+                                safe_install("apt-get install -y thc-ipv6", "thc-ipv6")
                             elif option2 == "48":
-                                cmd = os.system("apt-get install theharvester")
+                                safe_install("apt-get install -y theharvester", "theharvester")
                             elif option2 == "49":
-                                cmd = os.system("apt-get install tlssled")
+                                safe_install("apt-get install -y tlssled", "tlssled")
                             elif option2 == "50":
-                                cmd = os.system("apt-get install twofi")
+                                safe_install("apt-get install -y twofi", "twofi")
                             elif option2 == "51":
-                                cmd = os.system("apt-get install urlcrazy")
+                                safe_install("apt-get install -y urlcrazy", "urlcrazy")
                             elif option2 == "52":
-                                cmd = os.system("apt-get install wireshark")
+                                safe_install("apt-get install -y wireshark", "wireshark")
                             elif option2 == "53":
-                                cmd = os.system("apt-get install wol-e")
+                                safe_install("apt-get install -y wol-e", "wol-e")
                             elif option2 == "54":
-                                cmd = os.system("apt-get install xplico")
+                                safe_install("apt-get install -y xplico", "xplico")
                             elif option2 == "55":
-                                cmd = os.system("apt-get install ismtp")
+                                safe_install("apt-get install -y ismtp", "ismtp")
                             elif option2 == "56":
-                                cmd = os.system("apt-get install intrace")
+                                safe_install("apt-get install -y intrace", "intrace")
                             elif option2 == "57":
-                                cmd = os.system("apt-get install hping3")
+                                safe_install("apt-get install -y hping3", "hping3")
                             elif option2 == "back":
                                 inicio()
                             elif option2 == "gohome":
@@ -352,8 +373,31 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                                       "exit\t\tExit the program\n"
                                       "help\t\tShow this help menu\n")
                             elif option2 == "0":
-                                cmd = os.system(
-                                    "apt-get install -y acccheck ace-voip amap automater braa casefile cdpsnarf cisco-torch cookie-cadger copy-router-config dmitry dnmap dnsenum dnsmap dnsrecon dnstracer dnswalk dotdotpwn enum4linux enumiax exploitdb fierce firewalk fragroute fragrouter ghost-phisher golismero goofile lbd maltego-teeth masscan metagoofil miranda nmap p0f parsero recon-ng set smtp-user-enum snmpcheck sslcaudit sslsplit sslstrip sslyze thc-ipv6 theharvester tlssled twofi urlcrazy wireshark wol-e xplico ismtp intrace hping3 && wget http://www.morningstarsecurity.com/downloads/bing-ip2hosts-0.4.tar.gz && tar -xzvf bing-ip2hosts-0.4.tar.gz && cp bing-ip2hosts-0.4/bing-ip2hosts /usr/local/bin/")
+                                tools = [
+                                    "acccheck", "ace-voip", "amap", "automater", "braa", "casefile", "cdpsnarf", "cisco-torch",
+                                    "cookie-cadger", "copy-router-config", "dmitry", "dnmap", "dnsenum", "dnsmap", "dnsrecon",
+                                    "dnstracer", "dnswalk", "dotdotpwn", "enum4linux", "enumiax", "exploitdb", "fierce",
+                                    "firewalk", "fragroute", "fragrouter", "ghost-phisher", "golismero", "goofile", "lbd",
+                                    "maltego-teeth", "masscan", "metagoofil", "miranda", "nmap", "p0f", "parsero", "recon-ng",
+                                    "set", "smtp-user-enum", "snmpcheck", "sslcaudit", "sslsplit", "sslstrip", "sslyze",
+                                    "thc-ipv6", "theharvester", "tlssled", "twofi", "urlcrazy", "wireshark", "wol-e", "xplico",
+                                    "ismtp", "intrace", "hping3"
+                                ]
+                                for tool in tools:
+                                    safe_install(f"apt-get install -y {tool}", tool)
+                                # Install bing-ip2hosts
+                                try:
+                                    print("\033[1;34m[*] Installing bing-ip2hosts...\033[1;m")
+                                    exit_code = os.system(
+                                        "wget http://www.morningstarsecurity.com/downloads/bing-ip2hosts-0.4.tar.gz && tar -xzvf bing-ip2hosts-0.4.tar.gz && cp bing-ip2hosts-0.4/bing-ip2hosts /usr/local/bin/")
+                                    if exit_code != 0:
+                                        print("\033[1;31m[!] Failed to install bing-ip2hosts\033[1;m")
+                                        FAILED_TOOLS.append("bing-ip2hosts")
+                                    else:
+                                        print("\033[1;32m[+] bing-ip2hosts installed successfully.\033[1;m")
+                                except Exception as e:
+                                    print(f"\033[1;31m[!] Exception while installing bing-ip2hosts: {e}\033[1;m")
+                                    FAILED_TOOLS.append("bing-ip2hosts")
                             else:
                                 print(
                                     "\033[1;31mSorry, that was an invalid command!\033[1;m")
@@ -388,99 +432,114 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
                                 "\033[1;32mInsert the number of the tool to install it .\n\033[1;m")
                             option2 = input("\033[1;36mkat > \033[1;m")
                             if option2 == "1":
-                                cmd = os.system("apt-get install bbqsql")
-
+                                safe_install("apt-get install -y bbqsql", "bbqsql")
                             elif option2 == "2":
-                                cmd = os.system("apt-get install bed")
-
+                                safe_install("apt-get install -y bed", "bed")
                             elif option2 == "3":
-                                cmd = os.system(
-                                    "apt-get install cisco-auditing-tool")
+                                safe_install("apt-get install -y cisco-auditing-tool", "cisco-auditing-tool")
                             elif option2 == "4":
-                                cmd = os.system(
-                                    "apt-get install cisco-global-exploiter")
+                                safe_install("apt-get install -y cisco-global-exploiter", "cisco-global-exploiter")
                             elif option2 == "5":
-                                cmd = os.system("apt-get install cisco-ocs")
+                                safe_install("apt-get install -y cisco-ocs", "cisco-ocs")
                             elif option2 == "6":
-                                cmd = os.system("apt-get install cisco-torch")
+                                safe_install("apt-get install -y cisco-torch", "cisco-torch")
                             elif option2 == "7":
-                                cmd = os.system(
-                                    "apt-get install copy-router-config")
+                                safe_install("apt-get install -y copy-router-config", "copy-router-config")
                             elif option2 == "8":
-                                cmd = os.system(
-                                    "apt-get install git && git clone https://github.com/stasinopoulos/commix.git commix && cd commix && python ./commix.py --install")
+                                try:
+                                    print("\033[1;34m[*] Installing commix...\033[1;m")
+                                    exit_code = os.system("apt-get install -y git && git clone https://github.com/stasinopoulos/commix.git commix && cd commix && python ./commix.py --install")
+                                    if exit_code != 0:
+                                        print("\033[1;31m[!] Failed to install commix\033[1;m")
+                                        FAILED_TOOLS.append("commix")
+                                    else:
+                                        print("\033[1;32m[+] commix installed successfully.\033[1;m")
+                                except Exception as e:
+                                    print(f"\033[1;31m[!] Exception while installing commix: {e}\033[1;m")
+                                    FAILED_TOOLS.append("commix")
                             elif option2 == "9":
-                                cmd = os.system(
-                                    "echo 'download page : http://www.cqure.net/wp/tools/database/dbpwaudit/'")
+                                print("download page : http://www.cqure.net/wp/tools/database/dbpwaudit/")
                             elif option2 == "10":
-                                cmd = os.system("apt-get install doona")
+                                safe_install("apt-get install -y doona", "doona")
                             elif option2 == "11":
-                                cmd = os.system("apt-get install dotdotpwn")
+                                safe_install("apt-get install -y dotdotpwn", "dotdotpwn")
                             elif option2 == "12":
-                                cmd = os.system(
-                                    "apt-get install greenbone-security-assistant")
+                                safe_install("apt-get install -y greenbone-security-assistant", "greenbone-security-assistant")
                             elif option2 == "13":
-                                cmd = os.system(
-                                    "apt-get install git && git clone git://git.kali.org/packages/gsd.git")
+                                try:
+                                    print("\033[1;34m[*] Installing gsd...\033[1;m")
+                                    exit_code = os.system("apt-get install -y git && git clone git://git.kali.org/packages/gsd.git")
+                                    if exit_code != 0:
+                                        print("\033[1;31m[!] Failed to install gsd\033[1;m")
+                                        FAILED_TOOLS.append("gsd")
+                                    else:
+                                        print("\033[1;32m[+] gsd installed successfully.\033[1;m")
+                                except Exception as e:
+                                    print(f"\033[1;31m[!] Exception while installing gsd: {e}\033[1;m")
+                                    FAILED_TOOLS.append("gsd")
                             elif option2 == "14":
-                                cmd = os.system("apt-get install hexorbase")
+                                safe_install("apt-get install -y hexorbase", "hexorbase")
                             elif option2 == "15":
-                                print(
-                                    "Please download inguma from : http://inguma.sourceforge.net")
+                                print("Please download inguma from : http://inguma.sourceforge.net")
                             elif option2 == "16":
-                                cmd = os.system("apt-get install jsql")
+                                safe_install("apt-get install -y jsql", "jsql")
                             elif option2 == "17":
-                                cmd = os.system("apt-get install lynis")
+                                safe_install("apt-get install -y lynis", "lynis")
                             elif option2 == "18":
-                                cmd = os.system("apt-get install nmap")
+                                safe_install("apt-get install -y nmap", "nmap")
                             elif option2 == "19":
-                                cmd = os.system("apt-get install ohrwurm")
+                                safe_install("apt-get install -y ohrwurm", "ohrwurm")
                             elif option2 == "20":
-                                cmd = os.system(
-                                    "apt-get install openvas-administrator")
+                                safe_install("apt-get install -y openvas-administrator", "openvas-administrator")
                             elif option2 == "21":
-                                cmd = os.system("apt-get install gvmd")
+                                safe_install("apt-get install -y gvmd", "gvmd")
                             elif option2 == "22":
-                                cmd = os.system(
-                                    "apt-get install gvmd")
+                                safe_install("apt-get install -y gvmd", "gvmd")
                             elif option2 == "23":
-                                cmd = os.system(
-                                    "apt-get install openvas-scanner")
+                                safe_install("apt-get install -y openvas-scanner", "openvas-scanner")
                             elif option2 == "24":
-                                cmd = os.system("apt-get install oscanner")
+                                safe_install("apt-get install -y oscanner", "oscanner")
                             elif option2 == "25":
-                                cmd = os.system("apt-get install powerfuzzer")
+                                safe_install("apt-get install -y powerfuzzer", "powerfuzzer")
                             elif option2 == "26":
-                                cmd = os.system("apt-get install sfuzz")
+                                safe_install("apt-get install -y sfuzz", "sfuzz")
                             elif option2 == "27":
-                                cmd = os.system("apt-get install sidguesser")
+                                safe_install("apt-get install -y sidguesser", "sidguesser")
                             elif option2 == "28":
-                                cmd = os.system("apt-get install siparmyknife")
+                                safe_install("apt-get install -y siparmyknife", "siparmyknife")
                             elif option2 == "29":
-                                cmd = os.system("apt-get install sqlmap")
+                                safe_install("apt-get install -y sqlmap", "sqlmap")
                             elif option2 == "30":
-                                cmd = os.system("apt-get install sqlninja")
+                                safe_install("apt-get install -y sqlninja", "sqlninja")
                             elif option2 == "31":
-                                cmd = os.system("apt-get install sqlsus")
+                                safe_install("apt-get install -y sqlsus", "sqlsus")
                             elif option2 == "32":
-                                cmd = os.system("apt-get install thc-ipv6")
+                                safe_install("apt-get install -y thc-ipv6", "thc-ipv6")
                             elif option2 == "33":
-                                cmd = os.system("apt-get install tnscmd10g")
+                                safe_install("apt-get install -y tnscmd10g", "tnscmd10g")
                             elif option2 == "34":
-                                cmd = os.system(
-                                    "apt-get install unix-privesc-check")
+                                safe_install("apt-get install -y unix-privesc-check", "unix-privesc-check")
                             elif option2 == "35":
-                                cmd = os.system("apt-get install yersinia")
+                                safe_install("apt-get install -y yersinia", "yersinia")
                             elif option2 == "back":
                                 inicio()
                             elif option2 == "gohome":
                                 initio1()
                             elif option2 == "0":
-                                cmd = os.system(
-                                    "apt-get install -y bbqsql bed cisco-auditing-tool cisco-global-exploiter cisco-ocs cisco-torch copy-router-config doona dotdotpwn greenbone-security-assistant hexorbase jsql lynis nmap ohrwurm openvas-cli openvas-manager openvas-scanner oscanner powerfuzzer sfuzz sidguesser siparmyknife sqlmap sqlninja sqlsus thc-ipv6 tnscmd10g unix-privesc-check yersinia")
-                            else:
-                                print(
-                                    "\033[1;31mSorry, that was an invalid command!\033[1;m")
+                                tools = [
+                                    "bbqsql", "bed", "cisco-auditing-tool", "cisco-global-exploiter", "cisco-ocs", "cisco-torch", "copy-router-config", "doona", "dotdotpwn", "greenbone-security-assistant", "hexorbase", "jsql", "lynis", "nmap", "ohrwurm", "openvas-cli", "openvas-manager", "openvas-scanner", "oscanner", "powerfuzzer", "sfuzz", "sidguesser", "siparmyknife", "sqlmap", "sqlninja", "sqlsus", "thc-ipv6", "tnscmd10g", "unix-privesc-check", "yersinia"
+                                ]
+                                for tool in tools:
+                                    safe_install(f"apt-get install -y {tool}", tool)
+                        # Print failed tools summary at end of category
+                        if FAILED_TOOLS:
+                            print("\n\033[1;31mThe following tools failed to install:\033[1;m")
+                            for tool in FAILED_TOOLS:
+                                print(f"  - {tool}")
+                        else:
+                            print("\n\033[1;32mAll selected tools installed successfully.\033[1;m")
+                    else:
+                        print("\033[1;31mSorry, that was an invalid command!\033[1;m")
 
                         while opcion1 == "3":
                             print('''
@@ -1436,6 +1495,13 @@ For more information , please visit : http://www.florian-diesch.de/software/clas
         print("Shutdown requested...Goodbye...")
     except Exception:
         traceback.print_exc(file=sys.stdout)
+    # Print failed tools summary at the end of script
+    if FAILED_TOOLS:
+        print("\n\033[1;31mThe following tools failed to install:\033[1;m")
+        for tool in FAILED_TOOLS:
+            print(f"  - {tool}")
+    else:
+        print("\n\033[1;32mAll selected tools installed successfully.\033[1;m")
     sys.exit(0)
 
 
