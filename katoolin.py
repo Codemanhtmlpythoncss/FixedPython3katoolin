@@ -642,8 +642,15 @@ def install_wireless_attacks():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y aircrack-ng asleap bluelog blueranger bluesnarfer bully cowpatty crackle eapmd5pass fern-wifi-cracker ghost-phisher giskismet gqrx-sdr kalibrate-rtl killerbee kismet mdk3 mfcuk mfoc mfterm multimon-ng pixiewps reaver redfang spooftooph wifi-honey wifitap wifite")
+                tools = [
+                    "aircrack-ng", "asleap", "bluelog", "blueranger", "bluesnarfer", "bully",
+                    "cowpatty", "crackle", "eapmd5pass", "fern-wifi-cracker", "ghost-phisher",
+                    "giskismet", "gqrx-sdr", "kalibrate-rtl", "killerbee", "kismet", "mdk3",
+                    "mfcuk", "mfoc", "mfterm", "multimon-ng", "pixiewps", "reaver", "redfang",
+                    "spooftooph", "wifi-honey", "wifitap", "wifite"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install aircrack-ng")
             case "2":
@@ -764,8 +771,16 @@ def install_web_applications():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y apache-users arachni bbqsql blindelephant burpsuite cutycapt davtest deblaze dirb dirbuster fimap funkload grabber jboss-autopwn joomscan jsql maltego-teeth padbuster paros parsero plecost powerfuzzer proxystrike recon-ng skipfish sqlmap sqlninja sqlsus ua-tester uniscan vega w3af webscarab websploit wfuzz wpscan xsser zaproxy")
+                tools = [
+                    "apache-users", "arachni", "bbqsql", "blindelephant", "burpsuite", "cutycapt",
+                    "davtest", "deblaze", "dirb", "dirbuster", "fimap", "funkload", "grabber",
+                    "jboss-autopwn", "joomscan", "jsql", "maltego-teeth", "padbuster", "paros",
+                    "parsero", "plecost", "powerfuzzer", "proxystrike", "recon-ng", "skipfish",
+                    "sqlmap", "sqlninja", "sqlsus", "ua-tester", "uniscan", "vega", "w3af",
+                    "webscarab", "websploit", "wfuzz", "wpscan", "xsser", "zaproxy"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install apache-users")
             case "2":
@@ -898,8 +913,16 @@ def install_sniffing_spoofing():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y burpsuite dnschef fiked hamster-sidejack hexinject iaxflood inviteflood ismtp mitmproxy ohrwurm protos-sip rebind responder rtpbreak rtpinsertsound rtpmixsound sctpscan siparmyknife sipp sipvicious sniffjoke sslsplit sslstrip thc-ipv6 voiphopper webscarab wifi-honey wireshark xspy yersinia zaproxy")
+                tools = [
+                    "burpsuite", "dnschef", "fiked", "hamster-sidejack", "hexinject", "iaxflood",
+                    "inviteflood", "ismtp", "mitmproxy", "ohrwurm", "protos-sip", "rebind",
+                    "responder", "rtpbreak", "rtpinsertsound", "rtpmixsound", "sctpscan",
+                    "siparmyknife", "sipp", "sipvicious", "sniffjoke", "sslsplit", "sslstrip",
+                    "thc-ipv6", "voiphopper", "webscarab", "wifi-honey", "wireshark", "xspy",
+                    "yersinia", "zaproxy"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install burpsuite")
             case "2":
@@ -1012,8 +1035,13 @@ def install_maintaining_access():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y cryptcat cymothoa dbd dns2tcp http-tunnel httptunnel intersect nishang polenum powersploit pwnat ridenum sbd u3-pwn webshells weevely")
+                tools = [
+                    "cryptcat", "cymothoa", "dbd", "dns2tcp", "http-tunnel", "httptunnel",
+                    "intersect", "nishang", "polenum", "powersploit", "pwnat", "ridenum",
+                    "sbd", "u3-pwn", "webshells", "weevely"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install cryptcat")
             case "2":
@@ -1084,8 +1112,12 @@ def install_reporting_tools():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y casefile cutycapt dos2unix dradis keepnote magictree metagoofil nipper-ng pipal")
+                tools = [
+                    "casefile", "cutycapt", "dos2unix", "dradis", "keepnote", "magictree",
+                    "metagoofil", "nipper-ng", "pipal"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install casefile")
             case "2":
@@ -1150,8 +1182,13 @@ def install_exploitation_tools():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y armitage backdoor-factory cisco-auditing-tool cisco-global-exploiter cisco-ocs cisco-torch crackle jboss-autopwn linux-exploit-suggester maltego-teeth set shellnoob sqlmap thc-ipv6 yersinia beef-xss")
+                tools = [
+                    "armitage", "backdoor-factory", "cisco-auditing-tool", "cisco-global-exploiter",
+                    "cisco-ocs", "cisco-torch", "crackle", "jboss-autopwn", "linux-exploit-suggester",
+                    "maltego-teeth", "set", "shellnoob", "sqlmap", "thc-ipv6", "yersinia", "beef-xss"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install armitage")
             case "2":
@@ -1235,8 +1272,14 @@ def install_forensics_tools():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y binwalk bulk-extractor chntpw cuckoo dc3dd ddrescue dumpzilla extundelete foremost galleta guymager iphone-backup-analyzer p0f pdf-parser pdfid pdgmail peepdf volatility xplico")
+                tools = [
+                    "binwalk", "bulk-extractor", "chntpw", "cuckoo", "dc3dd", "ddrescue",
+                    "dumpzilla", "extundelete", "foremost", "galleta", "guymager",
+                    "iphone-backup-analyzer", "p0f", "pdf-parser", "pdfid", "pdgmail",
+                    "peepdf", "volatility", "xplico"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install binwalk")
             case "2":
@@ -1330,8 +1373,13 @@ def install_stress_testing():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y dhcpig funkload iaxflood inviteflood ipv6-toolkit mdk3 reaver rtpflood slowhttptest t50 termineter thc-ipv6 thc-ssl-dos")
+                tools = [
+                    "dhcpig", "funkload", "iaxflood", "inviteflood", "ipv6-toolkit", "mdk3",
+                    "reaver", "rtpflood", "slowhttptest", "t50", "termineter", "thc-ipv6",
+                    "thc-ssl-dos"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install dhcpig")
             case "2":
@@ -1408,8 +1456,16 @@ def install_password_attacks():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y acccheck burpsuite cewl chntpw cisco-auditing-tool cmospwd creddump crunch findmyhash gpp-decrypt hash-identifier hexorbase john johnny keimpx maltego-teeth maskprocessor multiforcer ncrack oclgausscrack pack patator polenum rainbowcrack rcracki-mt rsmangler statsprocessor thc-pptp-bruter truecrack webscarab wordlists zaproxy")
+                tools = [
+                    "acccheck", "burpsuite", "cewl", "chntpw", "cisco-auditing-tool", "cmospwd",
+                    "creddump", "crunch", "findmyhash", "gpp-decrypt", "hash-identifier",
+                    "hexorbase", "john", "johnny", "keimpx", "maltego-teeth", "maskprocessor",
+                    "multiforcer", "ncrack", "oclgausscrack", "pack", "patator", "polenum",
+                    "rainbowcrack", "rcracki-mt", "rsmangler", "statsprocessor", "thc-pptp-bruter",
+                    "truecrack", "webscarab", "wordlists", "zaproxy"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install acccheck")
             case "2":
@@ -1532,8 +1588,12 @@ def install_reverse_engineering():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y apktool dex2jar python-diStorm3 edb-debugger jad javasnoop JD OllyDbg smali Valgrind YARA")
+                tools = [
+                    "apktool", "dex2jar", "python-diStorm3", "edb-debugger", "jad", "javasnoop",
+                    "JD", "OllyDbg", "smali", "Valgrind", "YARA"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install apktool")
             case "2":
@@ -1592,8 +1652,11 @@ def install_hardware_hacking():
                       "exit\t\tExit the program\n"
                       "help\t\tShow this help menu\n")
             case "0":
-                os.system(
-                    "apt-get install -y android-sdk apktool arduino dex2jar sakis3g smali")
+                tools = [
+                    "android-sdk", "apktool", "arduino", "dex2jar", "sakis3g", "smali"
+                ]
+                for tool in tools:
+                    safe_install(f"apt-get install -y {tool}", tool)
             case "1":
                 os.system("apt-get install android-sdk")
             case "2":
